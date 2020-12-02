@@ -1,0 +1,163 @@
+from django.db import models
+
+
+# Create your models here.
+
+class Ip(models.Model):
+    host = models.CharField(max_length=32)
+    port = models.IntegerField()
+    recv_kbps = models.FloatField(blank=True, null=True)
+    send_kbps = models.FloatField(blank=True, null=True)
+    cpu_used = models.FloatField(blank=True, null=True)
+    mem_used = models.FloatField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'ip'
+
+
+class LinuxIoStat(models.Model):
+    tags = models.CharField(max_length=32)
+    host = models.CharField(max_length=32)
+    dev = models.CharField(max_length=64, blank=True, null=True)
+    rd_s = models.FloatField(blank=True, null=True)
+    rd_avgkb = models.FloatField(blank=True, null=True)
+    rd_m_s = models.FloatField(blank=True, null=True)
+    rd_mrg_s = models.FloatField(blank=True, null=True)
+    rd_cnc = models.FloatField(blank=True, null=True)
+    rd_rt = models.FloatField(blank=True, null=True)
+    wr_s = models.FloatField(blank=True, null=True)
+    wr_avgkb = models.FloatField(blank=True, null=True)
+    wr_m_s = models.FloatField(blank=True, null=True)
+    wr_mrg_s = models.FloatField(blank=True, null=True)
+    wr_cnc = models.FloatField(blank=True, null=True)
+    wr_rt = models.FloatField(blank=True, null=True)
+    busy = models.FloatField(blank=True, null=True)
+    in_prg = models.FloatField(blank=True, null=True)
+    io_s = models.FloatField(blank=True, null=True)
+    qtime = models.FloatField(blank=True, null=True)
+    stime = models.FloatField(blank=True, null=True)
+    check_time = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'linux_io_stat'
+
+
+class LinuxStatHis(models.Model):
+    tags = models.CharField(max_length=32)
+    host = models.CharField(max_length=32)
+    port = models.IntegerField()
+    hostname = models.CharField(max_length=64, blank=True, null=True)
+    ipinfo = models.CharField(max_length=255, blank=True, null=True)
+    linux_version = models.CharField(max_length=64, blank=True, null=True)
+    updays = models.FloatField(blank=True, null=True)
+    kernel = models.CharField(max_length=64, blank=True, null=True)
+    frame = models.CharField(max_length=64, blank=True, null=True)
+    cpu_mode = models.CharField(max_length=64, blank=True, null=True)
+    cpu_cache = models.CharField(max_length=64, blank=True, null=True)
+    processor = models.CharField(max_length=64, blank=True, null=True)
+    cpu_speed = models.CharField(max_length=64, blank=True, null=True)
+    recv_kbps = models.FloatField(blank=True, null=True)
+    send_kbps = models.FloatField(blank=True, null=True)
+    load1 = models.FloatField(blank=True, null=True)
+    load5 = models.FloatField(blank=True, null=True)
+    load15 = models.FloatField(blank=True, null=True)
+    cpu_sys = models.FloatField(blank=True, null=True)
+    cpu_iowait = models.FloatField(blank=True, null=True)
+    cpu_user = models.FloatField(blank=True, null=True)
+    cpu_used = models.FloatField(blank=True, null=True)
+    memtotal = models.FloatField(blank=True, null=True)
+    mem_used = models.FloatField(blank=True, null=True)
+    mem_cache = models.FloatField(blank=True, null=True)
+    mem_buffer = models.FloatField(blank=True, null=True)
+    mem_free = models.FloatField(blank=True, null=True)
+    mem_used_mb = models.FloatField(blank=True, null=True)
+    swap_used = models.FloatField(blank=True, null=True)
+    swap_free = models.FloatField(blank=True, null=True)
+    swapin = models.FloatField(blank=True, null=True)
+    swapout = models.FloatField(blank=True, null=True)
+    pgin = models.FloatField(blank=True, null=True)
+    pgout = models.FloatField(blank=True, null=True)
+    pgfault = models.FloatField(blank=True, null=True)
+    pgmjfault = models.FloatField(blank=True, null=True)
+    tcp_close = models.FloatField(blank=True, null=True)
+    tcp_timewait = models.FloatField(blank=True, null=True)
+    tcp_connected = models.FloatField(blank=True, null=True)
+    tcp_syn = models.FloatField(blank=True, null=True)
+    tcp_listen = models.FloatField(blank=True, null=True)
+    iops = models.FloatField(blank=True, null=True)
+    read_mb = models.FloatField(blank=True, null=True)
+    write_mb = models.FloatField(blank=True, null=True)
+    proc_new = models.FloatField(blank=True, null=True)
+    proc_running = models.FloatField(blank=True, null=True)
+    proc_block = models.FloatField(blank=True, null=True)
+    intr = models.FloatField(blank=True, null=True)
+    ctx = models.FloatField(blank=True, null=True)
+    softirq = models.FloatField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True)
+    check_time = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'linux_stat_his'
+
+
+class LinuxStat(models.Model):
+    tags = models.CharField(max_length=32)
+    host = models.CharField(max_length=32)
+    port = models.IntegerField()
+    hostname = models.CharField(max_length=64, blank=True, null=True)
+    ipinfo = models.CharField(max_length=255, blank=True, null=True)
+    linux_version = models.CharField(max_length=64, blank=True, null=True)
+    updays = models.FloatField(blank=True, null=True)
+    kernel = models.CharField(max_length=64, blank=True, null=True)
+    frame = models.CharField(max_length=64, blank=True, null=True)
+    cpu_mode = models.CharField(max_length=64, blank=True, null=True)
+    cpu_cache = models.CharField(max_length=64, blank=True, null=True)
+    processor = models.CharField(max_length=64, blank=True, null=True)
+    cpu_speed = models.CharField(max_length=64, blank=True, null=True)
+    recv_kbps = models.FloatField(blank=True, null=True)
+    send_kbps = models.FloatField(blank=True, null=True)
+    load1 = models.FloatField(blank=True, null=True)
+    load5 = models.FloatField(blank=True, null=True)
+    load15 = models.FloatField(blank=True, null=True)
+    cpu_sys = models.FloatField(blank=True, null=True)
+    cpu_iowait = models.FloatField(blank=True, null=True)
+    cpu_user = models.FloatField(blank=True, null=True)
+    cpu_used = models.FloatField(blank=True, null=True)
+    memtotal = models.FloatField(blank=True, null=True)
+    mem_used = models.FloatField(blank=True, null=True)
+    mem_cache = models.FloatField(blank=True, null=True)
+    mem_buffer = models.FloatField(blank=True, null=True)
+    mem_free = models.FloatField(blank=True, null=True)
+    mem_used_mb = models.FloatField(blank=True, null=True)
+    swap_used = models.FloatField(blank=True, null=True)
+    swap_free = models.FloatField(blank=True, null=True)
+    swapin = models.FloatField(blank=True, null=True)
+    swapout = models.FloatField(blank=True, null=True)
+    pgin = models.FloatField(blank=True, null=True)
+    pgout = models.FloatField(blank=True, null=True)
+    pgfault = models.FloatField(blank=True, null=True)
+    pgmjfault = models.FloatField(blank=True, null=True)
+    tcp_close = models.FloatField(blank=True, null=True)
+    tcp_timewait = models.FloatField(blank=True, null=True)
+    tcp_connected = models.FloatField(blank=True, null=True)
+    tcp_syn = models.FloatField(blank=True, null=True)
+    tcp_listen = models.FloatField(blank=True, null=True)
+    iops = models.FloatField(blank=True, null=True)
+    read_mb = models.FloatField(blank=True, null=True)
+    write_mb = models.FloatField(blank=True, null=True)
+    proc_new = models.FloatField(blank=True, null=True)
+    proc_running = models.FloatField(blank=True, null=True)
+    proc_block = models.FloatField(blank=True, null=True)
+    intr = models.FloatField(blank=True, null=True)
+    ctx = models.FloatField(blank=True, null=True)
+    softirq = models.FloatField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True)
+    check_time = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'linux_stat'
